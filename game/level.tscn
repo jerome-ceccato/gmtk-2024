@@ -1,0 +1,101 @@
+[gd_scene load_steps=14 format=4 uid="uid://bok5ngfu0drh6"]
+
+[ext_resource type="Script" path="res://game/map.gd" id="1_ar8n7"]
+[ext_resource type="TileSet" uid="uid://dv0kxdn486lal" path="res://assets/tileset.tres" id="1_b4hxt"]
+[ext_resource type="Texture2D" uid="uid://c374o4n56ggfl" path="res://assets/player-idle.png" id="3_cvw02"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0y75k"]
+atlas = ExtResource("3_cvw02")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msdax"]
+atlas = ExtResource("3_cvw02")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpaei"]
+atlas = ExtResource("3_cvw02")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0upj"]
+atlas = ExtResource("3_cvw02")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abc37"]
+atlas = ExtResource("3_cvw02")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xj2mt"]
+atlas = ExtResource("3_cvw02")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6j3lp"]
+atlas = ExtResource("3_cvw02")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lx4kv"]
+atlas = ExtResource("3_cvw02")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ntpfn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0y75k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msdax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpaei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0upj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abc37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xj2mt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6j3lp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lx4kv")
+}],
+"loop": true,
+"name": &"idle-down",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6nvyh"]
+radius = 7.0
+
+[node name="Level" type="Node2D"]
+
+[node name="Map" type="Node2D" parent="."]
+scale = Vector2(6, 6)
+script = ExtResource("1_ar8n7")
+
+[node name="Floor" type="TileMapLayer" parent="Map"]
+tile_map_data = PackedByteArray("AAAFAAIAAAAQAAwAAAAGAAIAAAAQAAwAAAAFAAMAAAAUAA4AAAAGAAMAAAAHAAcAAAAHAAIAAAAQAAwAAAAIAAIAAAAMAAgAAAAHAAMAAAAUAA4AAAAIAAMAAAAJAAUAAAAFAAQAAAAUAA4AAAAGAAQAAAAUAA4AAAAHAAQAAAAUAA4AAAAIAAQAAAAJAAUAAAAKAAMAAAAMAAUAAAALAAMAAAAUAA4AAAAMAAMAAAAHAAUAAAANAAMAAAAUAA4AAAANAAQAAAAUAA4AAAAMAAQAAAAUAA4AAAALAAQAAAAUAA4AAAAKAAQAAAAMAAUAAAAKAAIAAAAKAAgAAAALAAIAAAAQAAwAAAAMAAIAAAAQAAwAAAANAAIAAAAQAAwAAAAJAAIAAAAXABEAAAAJAAMAAAAQAAQAAAAJAAQAAAAQAAQAAAA=")
+tile_set = ExtResource("1_b4hxt")
+
+[node name="Walls" type="TileMapLayer" parent="Map"]
+tile_map_data = PackedByteArray("AAAGAAEAAAAYAA0AAAAHAAEAAAAXABAAAAAIAAEAAAAXABAAAAAJAAEAAAAXABAAAAAKAAEAAAAXABAAAAALAAEAAAAXABAAAAAMAAEAAAAYAA0AAAAFAAEAAAAdAA4AAAAEAAEAAAAZAA8AAAAEAAIAAAAYAA8AAAAEAAMAAAAYAA8AAAAEAAQAAAAYAA8AAAAFAAUAAAAXAA4AAAAGAAUAAAAXAA4AAAAHAAUAAAAXAA4AAAAIAAUAAAAXAA4AAAAJAAUAAAAXAA4AAAAKAAUAAAAXAA4AAAALAAUAAAAXAA4AAAAMAAUAAAAXAA4AAAAEAAUAAAAZABAAAAAOAAUAAAAaABAAAAAOAAEAAAAaAA8AAAAOAAQAAAAWAA8AAAAOAAMAAAAWAA8AAAAOAAIAAAAWAA8AAAANAAEAAAAbAA4AAAANAAUAAAAXAA4AAAA=")
+tile_set = ExtResource("1_b4hxt")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(263, 139)
+scale = Vector2(6, 6)
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_ntpfn")
+animation = &"idle-down"
+autoplay = "idle-down"
+frame_progress = 0.577163
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_6nvyh")
