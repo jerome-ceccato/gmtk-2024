@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var player: Player = $Player
 @onready var ui_animation_player: AnimationPlayer = $UI/AnimationPlayer
+@onready var label: Label = $UI/MessageContainer/Label
 
 
 @export_category("Scene settings")
@@ -16,23 +17,30 @@ func _ready() -> void:
 	player.player_death.connect(_on_player_death)
 	player.player_win.connect(_on_player_win)
 	
-	$UI/MessageContainer/Label.text = level_name
+	label.text = level_name
 	ui_animation_player.play("start")
 
 func _on_player_death():
 	ui_animation_player.play("defeat")
 
 func _on_player_win():
+	if _has_next_level():
+		label.text = "Level complete!"
+	else:
+		label.text = "Congratulations!\nYou won the game!"
 	ui_animation_player.play("victory")
 
 func _reload_scene():
 	get_tree().reload_current_scene()
 
 func _play_next_scene():
-	if next_scene != null and next_scene.length() > 0:
+	if _has_next_level():
 		get_tree().change_scene_to_file(next_scene)
 	else:
 		_load_menu()
+
+func _has_next_level() -> bool:
+	return next_scene != null and next_scene.length() > 0
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):

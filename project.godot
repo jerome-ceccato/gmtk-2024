@@ -19,6 +19,10 @@ config/icon="res://menu/icon.png"
 
 project/assembly_name="scaler"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/IATGOF/data/dev/gmtk-2024/demo.avi"
+
 [input]
 
 move_left={
