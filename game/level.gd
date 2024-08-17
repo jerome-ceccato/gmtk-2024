@@ -3,6 +3,7 @@ extends Node2D
 @onready var player: Player = $Player
 @onready var ui_animation_player: AnimationPlayer = $UI/AnimationPlayer
 @onready var label: Label = $UI/MessageContainer/Label
+@onready var score_container: HBoxContainer = $UI/ScoreContainer
 
 
 @export_category("Scene settings")
@@ -20,15 +21,22 @@ func _ready() -> void:
 	label.text = level_name
 	ui_animation_player.play("start")
 
+func _physics_process(delta: float) -> void:
+	score_container.set_score(Global.coins + player.coins)
+
 func _on_player_death():
 	ui_animation_player.play("defeat")
 
 func _on_player_win():
+	Global.coins += player.coins
+	player.coins = 0
+	
 	if _has_next_level():
 		label.text = "Level complete!"
+		ui_animation_player.play("victory")
 	else:
-		label.text = "Congratulations!\nYou won the game!"
-	ui_animation_player.play("victory")
+		label.text = "Congratulations!\nYou won the game!\nScore: %d" % Global.coins
+		ui_animation_player.play("victory-end")
 
 func _reload_scene():
 	get_tree().reload_current_scene()

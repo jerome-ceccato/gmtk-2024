@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=4 uid="uid://dab678nhb5txu"]
+[gd_scene load_steps=4 format=4 uid="uid://dab678nhb5txu"]
 
 [ext_resource type="PackedScene" uid="uid://bok5ngfu0drh6" path="res://game/level.tscn" id="1_t8tkj"]
 [ext_resource type="PackedScene" uid="uid://smqkaslhi6gh" path="res://game/exit.tscn" id="2_js543"]
+[ext_resource type="PackedScene" uid="uid://tip60fpt8vqc" path="res://game/coin.tscn" id="3_lsv24"]
 
 [node name="Level01" type="Node2D"]
 
@@ -20,8 +21,19 @@ tile_map_data = PackedByteArray("AAAFAAIAAQABAAkAAAABAAAAAQAXAAcAAAAJAAAAAQAXAAc
 
 [node name="Exit" parent="Level/Map/Entities" index="0" instance=ExtResource("2_js543")]
 
+[node name="Coin" parent="Level/Map/Entities" index="1" instance=ExtResource("3_lsv24")]
+position = Vector2(71, 21.6667)
+
+[node name="Coin2" parent="Level/Map/Entities" index="2" instance=ExtResource("3_lsv24")]
+position = Vector2(151.167, 56.5)
+
 [node name="Player" parent="Level" index="1"]
 position = Vector2(245, 111)
+
+[node name="ScoreContainer" parent="Level/UI" index="1"]
+anchors_preset = 3
+offset_right = 0.0
+offset_bottom = 0.0
 
 [editable path="Level"]
 [editable path="Level/Player"]

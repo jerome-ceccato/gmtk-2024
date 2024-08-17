@@ -14,6 +14,8 @@ var last_direction: Vector2 = Vector2.DOWN
 var _on_floor = false
 var _alive = true
 
+var coins: int = 0
+
 func _physics_process(delta: float) -> void:
 	if not _alive:
 		return
@@ -75,3 +77,6 @@ func on_death():
 
 func on_win():
 	player_win.emit()
+
+func pickup_coin():
+	coins += 1

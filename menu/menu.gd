@@ -3,6 +3,7 @@ extends Control
 @export_file("*.tscn") var first_level_path: String
 
 func _on_play_pressed() -> void:
+	Global.coins = 0
 	get_tree().change_scene_to_file(first_level_path)
 
 func _on_exit_pressed() -> void:

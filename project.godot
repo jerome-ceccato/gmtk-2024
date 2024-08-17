@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="scaler"
-run/main_scene="res://levels/level03.tscn"
+run/main_scene="res://menu/menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://menu/icon.png"
+
+[autoload]
+
+Global="*res://menu/global.gd"
 
 [dotnet]
 
