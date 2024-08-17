@@ -6,11 +6,12 @@ signal player_win()
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var feet: CollisionShape2D = $Feet
+@onready var floor_detector: Area2D = $FloorDetector
 
 @export var speed: float = 300
 var last_direction: Vector2 = Vector2.DOWN
 
+var _on_floor = false
 var _alive = true
 
 func _physics_process(delta: float) -> void:
@@ -28,6 +29,16 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	animated_sprite.play(_get_current_animation_name(movement_direction))
+	_check_floor()
+
+func _check_floor():
+	# _on_floor helps ignore the first instances where the floor is not detected yet
+	# Falls only happen if you've been on the floor before
+	if floor_detector.get_overlapping_bodies().size() == 0:
+		if _on_floor:
+			kill_fall()
+	else:
+		_on_floor = true
 
 func _get_current_animation_name(direction: Vector2) -> String:
 	if direction.is_zero_approx():
