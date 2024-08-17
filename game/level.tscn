@@ -337,6 +337,12 @@ tile_set = ExtResource("1_b4hxt")
 [node name="Walls" type="TileMapLayer" parent="Map"]
 tile_set = ExtResource("1_b4hxt")
 
+[node name="Decorations" type="TileMapLayer" parent="Map"]
+tile_set = ExtResource("1_b4hxt")
+
+[node name="Effects" type="TileMapLayer" parent="Map"]
+tile_set = ExtResource("1_b4hxt")
+
 [node name="Entities" type="Node2D" parent="Map"]
 
 [node name="Player" parent="." instance=ExtResource("4_xosei")]

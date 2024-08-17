@@ -41,6 +41,10 @@ func get_map_bounds() -> Rect2:
 		# Add 1 tile padding around
 		var child := node as TileMapLayer
 		var other_map_bounds := child.get_used_rect()
+		
+		if other_map_bounds.size == Vector2i.ZERO:
+			continue
+		
 		var other_pos = child.map_to_local(other_map_bounds.position)
 		var other_end = child.map_to_local(other_map_bounds.end)
 		
