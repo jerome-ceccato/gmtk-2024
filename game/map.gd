@@ -1,16 +1,17 @@
 extends Node2D
 
+@export var player: CharacterBody2D
+
 const cell_size: Vector2 = Vector2(16, 16)
 
 func _ready() -> void:
 	resize_full()
-	get_tree().root.size_changed.connect(resize_full)
+	get_tree().root.size_changed.connect(on_window_size_changed)
 
 func resize_full():
 	var bounds := get_map_bounds()
 	var target_scale := get_map_scale(bounds)
 	
-	print(bounds, target_scale)
 	position = -(bounds.position * target_scale)
 	scale = target_scale
 
@@ -32,3 +33,9 @@ func get_map_bounds() -> Rect2:
 func get_map_scale(bounds: Rect2) -> Vector2:
 	var window_size := Vector2(get_tree().root.size)
 	return Vector2(window_size.x / bounds.size.x, window_size.y / bounds.size.y)
+
+func on_window_size_changed():
+	var local_player_pos = to_local(player.global_position)
+	resize_full()
+	# TODO collisions
+	player.global_position = to_global(local_player_pos)
