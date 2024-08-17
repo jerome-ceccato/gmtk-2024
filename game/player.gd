@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 signal player_death()
+signal player_win()
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -51,5 +52,15 @@ func kill_fall():
 	_alive = false
 	animation_player.play("death-fall")
 
+func exit_level():
+	if not _alive:
+		return
+	
+	_alive = false
+	animation_player.play("exit-level")
+
 func on_death():
 	player_death.emit()
+
+func on_win():
+	player_win.emit()

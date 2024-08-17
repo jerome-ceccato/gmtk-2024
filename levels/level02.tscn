@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=4 uid="uid://b06g026qs58ia"]
+[gd_scene load_steps=5 format=4 uid="uid://b06g026qs58ia"]
 
 [ext_resource type="PackedScene" uid="uid://bok5ngfu0drh6" path="res://game/level.tscn" id="1_t0h30"]
 [ext_resource type="PackedScene" uid="uid://dkq8ofpxllnqk" path="res://game/pit.tscn" id="2_46ilg"]
+[ext_resource type="PackedScene" uid="uid://smqkaslhi6gh" path="res://game/exit.tscn" id="3_pe7hs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5gcn"]
 size = Vector2(16.5, 64.5)
@@ -9,6 +10,7 @@ size = Vector2(16.5, 64.5)
 [node name="Level02" type="Node2D"]
 
 [node name="Level" parent="." instance=ExtResource("1_t0h30")]
+level_name = "Level 02"
 
 [node name="Floor" parent="Level/Map" index="0"]
 tile_map_data = PackedByteArray("AAACAAEAAAAPAAwAAAACAAIAAAAPAA0AAAACAAMAAAAPAA0AAAADAAMAAAAUAA4AAAADAAQAAAAUAA4AAAACAAQAAAAPAA0AAAADAAIAAAAUAA4AAAADAAEAAAAQAAwAAAAEAAEAAAAQAAwAAAAFAAEAAAAMAAgAAAAJAAEAAAAQAAwAAAAKAAEAAAARAAwAAAAKAAIAAAARAA0AAAAKAAMAAAARAA0AAAAKAAQAAAARAA0AAAAJAAQAAAAUAA4AAAAGAAQAAAASAAgAAAAFAAQAAAAJAAUAAAAEAAQAAAAUAA4AAAAEAAMAAAAUAA4AAAAEAAIAAAAUAA4AAAAFAAIAAAAJAAUAAAAGAAIAAAASAAgAAAAGAAMAAAASAAgAAAAFAAMAAAAJAAUAAAAJAAMAAAAUAA4AAAAGAAEAAAAXABEAAAAHAAEAAAAKAAgAAAAHAAIAAAAMAAUAAAAHAAMAAAAMAAUAAAAHAAQAAAAMAAUAAAAJAAIAAAAHAAUAAAAIAAEAAAAQAAwAAAAIAAIAAAAUAA4AAAAIAAMAAAAUAA4AAAAIAAQAAAAUAA4AAAA=")
@@ -22,6 +24,9 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Map/Entities/Pit"]
 shape = SubResource("RectangleShape2D_f5gcn")
+
+[node name="Exit" parent="Level/Map/Entities" index="1" instance=ExtResource("3_pe7hs")]
+position = Vector2(152.667, 11.3333)
 
 [node name="Player" parent="Level" index="1"]
 position = Vector2(353, 246)
