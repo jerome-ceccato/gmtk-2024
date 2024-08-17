@@ -1,0 +1,82 @@
+[gd_scene load_steps=13 format=3 uid="uid://d2ewqi55icohs"]
+
+[ext_resource type="Texture2D" uid="uid://b7lbq3aq4i6v4" path="res://private/sprites.png" id="1_icmn4"]
+[ext_resource type="Script" path="res://game/door.gd" id="1_u167k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8puk"]
+atlas = ExtResource("1_icmn4")
+region = Rect2(1520, 544, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aapvm"]
+atlas = ExtResource("1_icmn4")
+region = Rect2(1536, 544, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udn36"]
+atlas = ExtResource("1_icmn4")
+region = Rect2(1552, 544, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onty6"]
+atlas = ExtResource("1_icmn4")
+region = Rect2(1568, 544, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixyxd"]
+atlas = ExtResource("1_icmn4")
+region = Rect2(1584, 544, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp3o5"]
+atlas = ExtResource("1_icmn4")
+region = Rect2(1600, 544, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_og8vb"]
+atlas = ExtResource("1_icmn4")
+region = Rect2(1616, 544, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lycnj"]
+atlas = ExtResource("1_icmn4")
+region = Rect2(1632, 544, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lk4t5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8puk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aapvm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udn36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onty6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixyxd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cp3o5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_og8vb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lycnj")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwmy3"]
+size = Vector2(16, 16)
+
+[node name="Door" type="StaticBody2D"]
+script = ExtResource("1_u167k")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lk4t5")
+animation = &"open"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lwmy3")
