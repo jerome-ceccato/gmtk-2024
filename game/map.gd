@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var player: CharacterBody2D
+@export var player: Player
 
 const cell_size: Vector2 = Vector2(16, 16)
 
@@ -34,9 +34,12 @@ func resize_full():
 
 func get_map_bounds() -> Rect2:
 	var bounds := Rect2(10000, 10000, 0, 0)
-	for child: TileMapLayer in get_children():
+	for node: Node in get_children():
+		if node is not TileMapLayer:
+			continue
 		# Get the tilemap pos and convert to global position
 		# Add 1 tile padding around
+		var child := node as TileMapLayer
 		var other_map_bounds := child.get_used_rect()
 		var other_pos = child.map_to_local(other_map_bounds.position)
 		var other_end = child.map_to_local(other_map_bounds.end)
